@@ -116,6 +116,7 @@ def register(request):
         valid = False
     if not PASSWORD_REGEX.match(request.POST['password']):
         messages.add_message(request, messages.INFO, "*Password must contain at least 1 capital letter and at least 1 number, and be at least 8 characters long.")
+        valid = False
     if request.POST['password'] != request.POST['confirm_password']:
         messages.add_message(request, messages.INFO, "*Password inputs must match.")
         valid = False
