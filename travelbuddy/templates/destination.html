@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ destination.name }}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Daniel Hilla">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header style="float: right">
+        <a href="/travels/">Home</a>
+        <a href="/logout/">Logout</a>
+    </header>
+    <br>
+    <h1>{{ destination.name }}</h1>
+    <ul style="list-style-type:none">
+        <li>Planned By: {{ destination.author }}</li>
+        <li>Description: {{ destination.description }}</li>
+        <li>Travel Date From: {{ destination.from_date }}</li>
+        <li>Travel Date From: {{ destination.to_date }}</li>
+    </ul>
+    <br>
+    <h2>Other users joining the trip:</h2>
+    <ul style="list-style-type:none">
+        {% for passenger in destination.passengers %}
+        <li>{{ passenger }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

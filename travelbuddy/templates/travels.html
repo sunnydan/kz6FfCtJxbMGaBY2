@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Daniel Hilla">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        td, th {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <header style="display: flex; justify-content: space-between;">
+        <h1>Hello, {{ request.user.first_name }}</h1>
+        <a href="/logout/">Logout</a>
+    </header>
+    <br>
+    <div>
+        Your Trip Schedules
+        <table>
+            <tr>
+                <th>Destination</th>
+                <th>Travel Start Date</th>
+                <th>Travel End Date</th>
+                <th>Plan</th>
+            </tr>
+            {% for plan in your_plans %}
+            <tr>
+                <td>
+                    <a href="/travels/destination/{{ plan.id }}">{{ plan.name }}</a>
+                </td>
+                <td>{{ plan.from_date }}</td>
+                <td>{{ plan.to_date }}</td>
+                <td>{{ plan.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div>
+        Other Users' Travel Plans
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Destination</th>
+                <th>Travel Start Date</th>
+                <th>Travel End Date</th>
+                <th>Do You Want to Join?</th>
+            </tr>
+            {% for plan in all_travel_plans %}
+            <tr>
+                <td>{{ plan.author.user.first_name }}</td>
+                <td>
+                    <a href="/travels/destination/{{ plan.id }}">{{ plan.name }}</a>
+                </td>
+                <td>{{ plan.from_date }}</td>
+                <td>{{ plan.to_date }}</td>
+                <td>
+                    <a href="/travels/join/{{ plan.id }}">Join</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <footer style="float: right;">
+        <a href="/travels/add/">Add Travel Plan</a>
+    </footer>
+</body>
+
+</html>

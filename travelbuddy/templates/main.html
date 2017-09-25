@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Buddy</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Daniel Hilla">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <div style="display: flex; justify-content: center;">
+        <div style="border: solid black 1px; padding: 5px;">
+            <h2>Register</h2>
+            <table>
+                <form action="/register/" method="POST">
+                    {% csrf_token %}
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" name="name" id="name"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="username">Username:</label></td>
+                        <td><input type="text" name="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 10px;">*Password should be at least 8 characters.</td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password:</label></td>
+                        <td><input type="password" name="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="confirm_password">Confirm Password:</label></td>
+                        <td><input type="password" name="confirm_password" id="confirm_password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Register"></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+        <div style="border: solid black 1px; padding: 5px;">
+            <h2>Login</h2>
+            <table>
+                <form action="/login/" method="POST">
+                    {% csrf_token %}
+                    <tr>
+                        <td><label for="username">Username:</label></td>
+                        <td><input type="text" name="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password:</label></td>
+                        <td><input type="password" name="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Login"></td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
